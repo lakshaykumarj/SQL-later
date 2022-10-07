@@ -1,0 +1,32 @@
+PROCEDURES: 
+
+CREATE OR REPLACE PROCEDURE cust_sel(grad int) IS
+tab customer%rowtype;
+BEGIN
+	SELECT * INTO tab FROM customer WHERE customer.grade = grad;
+	DBMS_OUTPUT.PUT_LINE('CITY : ' || tab.CITY );
+END;
+/		
+SET SERVEROUT ON;
+EXEC CUST_SEL(300);
+
+FUNCTION:
+ CREATE OR REPLACE FUNCTION totalCustomers
+    RETURN int IS
+       total INT := 0;
+    BEGIN
+       SELECT sum(grade) into total
+       FROM customer;
+        RETURN total;
+    END;
+  /
+  
+  
+  DECLARE
+       S int;
+    BEGIN
+       S := totalCustomers();
+       DBMS_OUTPUT.PUT_LINE(S);
+    END;
+   /
+   
