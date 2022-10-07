@@ -30,3 +30,23 @@ FUNCTION:
     END;
    /
    
+CURSER:
+
+DECLARE
+CURSOR sel_cur IS SELECT grade FROM sel_cur;
+grade_x grade%type;
+
+BEGIN
+OPEN sel_cur;
+
+LOOP
+FETCH sel_cur INTO grade_x;
+IF sel_curr%NOTFOUND
+THEN EXIT;
+END IF;
+DBMS_OUTPUT.PUT_LINE(grade_x);
+END LOOP;
+
+CLOSE sel_cur;
+END;
+/
